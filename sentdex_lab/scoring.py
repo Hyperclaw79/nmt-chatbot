@@ -169,6 +169,29 @@ def do_scoring(question, answer, score):
 
 
 
+def return_choice(question,answer,score):
+    score = do_scoring(question, answer, score)
+                
+    ans_score[answer] = score
+
+     '''print(question)
+        print(answer)
+        print(score)
+        print()
+        print()'''
+
+    scores = [v for k,v in ans_score.items()]
+
+    max_score = max(scores)
+    #print('Highest score =',max_score)
+
+    options = [k for k,v in ans_score.items() if v == max_score]
+    #print(options)
+
+    return random.choice(options)
+        
+        
+
 if __name__ == '__main__':
     name = 'full_some_questions-81k.out'
 
@@ -187,26 +210,7 @@ if __name__ == '__main__':
 
                 #score = score_based_placement(idx, score)
 
-                score = do_scoring(question, answer, score)
-
-                
-                ans_score[answer] = score
-                
-                '''print(question)
-                print(answer)
-                print(score)
-                print()
-                print()'''
-
-            scores = [v for k,v in ans_score.items()]
-            
-            max_score = max(scores)
-            #print('Highest score =',max_score)
-
-            options = [k for k,v in ans_score.items() if v == max_score]
-            #print(options)
-
-            choice_answer = random.choice(options)
+            choice_answer = get_choice(question, answer, score)
 
             print(30*"_")
             print('> ',question)
